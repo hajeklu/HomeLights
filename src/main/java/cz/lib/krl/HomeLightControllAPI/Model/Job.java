@@ -1,0 +1,47 @@
+package cz.lib.krl.HomeLightControllAPI.Model;
+
+import java.lang.annotation.ElementType;
+import java.util.Calendar;
+
+public class Job {
+
+    private int id;
+
+    private Calendar actionTime;
+
+    private ELightStatus action;
+
+    private boolean done;
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Calendar getActionTime() {
+        return actionTime;
+    }
+
+    public void setActionTime(Calendar actionTime) {
+        this.actionTime = actionTime;
+    }
+
+    public ELightStatus getAction() {
+        return action;
+    }
+
+    public void setAction(ELightStatus action) {
+        this.action = action;
+    }
+}
