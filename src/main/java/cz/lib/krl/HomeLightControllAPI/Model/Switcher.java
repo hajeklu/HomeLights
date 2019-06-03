@@ -1,7 +1,7 @@
 package cz.lib.krl.HomeLightControllAPI.Model;
 
 import cz.lib.krl.HomeLightControllAPI.Model.Logging.ILogger;
-import cz.lib.krl.HomeLightControllAPI.Model.WebSocket.IWebSocket;
+import cz.lib.krl.HomeLightControllAPI.Model.ArduinoCommunication.IArduinoCommunicationProvider;
 import cz.lib.krl.HomeLightControllAPI.Repositories.IJobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,26 +14,28 @@ import java.util.Date;
 public class Switcher {
 
     private IJobRepository jobRepository;
-    private IWebSocket iWebSocket;
+    private IArduinoCommunicationProvider iArduinoCommunicationProvider;
     private ILogger logger;
+    private LightStatus lightStatus;
 
     @Autowired
-    public Switcher(IJobRepository iJobRepository, IWebSocket iWebSocket, ILogger logger) {
+    public Switcher(IJobRepository iJobRepository, IArduinoCommunicationProvider iArduinoCommunicationProvider, ILogger logger, LightStatus lightStatus) {
         this.jobRepository = iJobRepository;
-        this.iWebSocket = iWebSocket;
+        this.iArduinoCommunicationProvider = iArduinoCommunicationProvider;
         this.logger = logger;
+        this.lightStatus = lightStatus;
     }
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRate = 10000)
     public void decide() {
         Calendar calendar = Calendar.getInstance();
 
         for (Job job : jobRepository.getAll()) {
             if (!job.isDone() && calendar.compareTo(job.getActionTime()) > 0) {
-                LightStatus.setStatus(job.getAction());
-                iWebSocket.sendMessage("/topic/status", LightStatus.getStatus().toString());
+                lightStatus.setStatus(job.getAction());
+                iArduinoCommunicationProvider.sendMessage(lightStatus.getStatus().toString());
                 job.setDone(true);
-                logger.logMessage(new Date().toString() + ": Status change on: " + LightStatus.getStatus().toString());
+                logger.logMessage("Status change by switcher on: " + lightStatus.getStatus().toString());
             }
         }
     }

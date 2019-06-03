@@ -3,49 +3,46 @@ package cz.lib.krl.HomeLightControllAPI.Controllers;
 import cz.lib.krl.HomeLightControllAPI.Model.ELightStatus;
 import cz.lib.krl.HomeLightControllAPI.Model.LightStatus;
 import cz.lib.krl.HomeLightControllAPI.Model.Logging.ILogger;
-import cz.lib.krl.HomeLightControllAPI.Model.WebSocket.IWebSocket;
+import cz.lib.krl.HomeLightControllAPI.Model.ArduinoCommunication.IArduinoCommunicationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
 @Controller
 public class HomeController {
 
-
-    private IWebSocket iwebSocket;
     private ILogger iLogger;
+    private LightStatus lightStatus;
 
     @Autowired
-    public HomeController(IWebSocket iwebSocket, ILogger iLogger) {
-        this.iwebSocket = iwebSocket;
+    public HomeController(IArduinoCommunicationProvider arduinoCom, ILogger iLogger, LightStatus lightStatus) {
         this.iLogger = iLogger;
+        this.lightStatus = lightStatus;
     }
 
-    @GetMapping("/light")
+    @RequestMapping("/light")
     @ResponseBody
     public ELightStatus getLightStatus() {
-        iLogger.logMessage(new Date().toString() + ": Status get");
-        return LightStatus.getStatus();
+
+        return lightStatus.getStatus();
     }
 
     @RequestMapping("/light/on")
-    public String turnOnTheLight() {
-        iLogger.logMessage(new Date().toString() + ": ON");
-        LightStatus.setStatus(ELightStatus.TURNON);
-        iwebSocket.sendMessage("/topic/status", LightStatus.getStatus().toString());
-        return "/index.html";
+    public void turnOnTheLight() {
+        lightStatus.setStatus(ELightStatus.TURNON);
+        iLogger.logMessage("TURNON");
     }
 
     @RequestMapping("/light/off")
-    public String turnOffTheLight() {
-        iLogger.logMessage(new Date().toString() + ": OFF");
-        LightStatus.setStatus(ELightStatus.TURNOFF);
-        iwebSocket.sendMessage("/topic/status", LightStatus.getStatus().toString());
+    public void turnOffTheLight() {
+        lightStatus.setStatus(ELightStatus.TURNOFF);
+        iLogger.logMessage("TURNOFF");
+    }
+
+    @RequestMapping("/")
+    public String index(){
         return "/index.html";
     }
 

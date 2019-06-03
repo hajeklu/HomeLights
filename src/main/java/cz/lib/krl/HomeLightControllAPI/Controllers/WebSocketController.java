@@ -1,4 +1,4 @@
-package cz.lib.krl.HomeLightControllAPI.Controllers;
+/*package cz.lib.krl.HomeLightControllAPI.Controllers;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -15,3 +15,4 @@ public class WebSocketController {
     }
 
 }
+*/

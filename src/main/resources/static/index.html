@@ -5,12 +5,12 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="-1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <title>Světla</title>
 </head>
 <body>
-<a href="/light/on?rand=0123" class="button">Zapnout</a>
-
-<a href="/light/off?rand=0123" class="button2">Vypnout</a>
+<button type="submit" name="TurnON" id="TurnON" class="button" >Turn on</button>
+<button type="submit" class="button2" name="TurnOFF" >Turn off</button>
 </body>
 </html>
 
@@ -40,3 +40,34 @@
         cursor: pointer;
     }
 </style>
+
+<script type="text/javascript">
+
+    $("TurnOFF").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/light/off",
+            error: function() {
+                alert('error');
+            }
+        });
+    });
+
+    $("TurnON").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/light/on",
+            data: {
+                id: $(this).val(), // < note use of 'this' here
+            },
+            success: function(result) {
+                alert('ok');
+            },
+            error: function(result) {
+                alert('error');
+            }
+        });
+    });
+</script>

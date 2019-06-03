@@ -41,7 +41,8 @@ public class JobGenerator {
         sunset.setDone(false);
         jobRepository.save(sunset);
 
-        logger.logMessage(new Date().toString() + ": Jobs were be generated. (" + jobRepository.getCount() + ")");
+        logger.logMessage("Jobs were be generated. (" + jobRepository.getCount() + ")");
+        logger.logMessage("Sunrise: " + daySchedule.getSunrize().getTime() + ", Sunset: " + daySchedule.getSunset().getTime());
     }
 
     private int getNextId() {

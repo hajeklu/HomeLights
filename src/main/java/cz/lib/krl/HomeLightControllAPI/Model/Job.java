@@ -44,4 +44,14 @@ public class Job {
     public void setAction(ELightStatus action) {
         this.action = action;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Time: " + actionTime.getTime().toString() + ", Action: " + action + ", is done: " + done;
+    }
+
+    @Override
+    public int hashCode() {
+        return id + actionTime.hashCode() + action.hashCode();
+    }
 }

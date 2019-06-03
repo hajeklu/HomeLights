@@ -1,6 +1,6 @@
 package cz.lib.krl.HomeLightControllAPI.Config;
 
-import cz.lib.krl.HomeLightControllAPI.Model.LightStatus;
+/*import cz.lib.krl.HomeLightControllAPI.Model.LightStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -53,4 +53,4 @@ public class SimpleWebSocketHandler extends TextWebSocketHandler {
     }
 
 
-}
+}*/

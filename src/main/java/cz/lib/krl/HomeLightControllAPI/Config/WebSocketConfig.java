@@ -1,4 +1,4 @@
-package cz.lib.krl.HomeLightControllAPI.Config;
+/*package cz.lib.krl.HomeLightControllAPI.Config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -35,5 +35,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(simpleWebSocketHandler, "/websocket");
-    }*/
+    }
 }
+*/

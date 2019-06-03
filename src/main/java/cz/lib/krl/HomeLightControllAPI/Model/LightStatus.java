@@ -1,14 +1,16 @@
 package cz.lib.krl.HomeLightControllAPI.Model;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LightStatus {
 
-    private static ELightStatus status = ELightStatus.TURNOFF;
+    private ELightStatus status = ELightStatus.TURNOFF;
 
-    public static ELightStatus getStatus() {
+    public ELightStatus getStatus() {
         return status;
     }
 
-    public static void setStatus(ELightStatus status) {
-        LightStatus.status = status;
+    public void setStatus(ELightStatus status) {
+        this.status = status;
     }
 }

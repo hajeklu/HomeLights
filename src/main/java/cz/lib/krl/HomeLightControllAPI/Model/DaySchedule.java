@@ -1,7 +1,5 @@
 package cz.lib.krl.HomeLightControllAPI.Model;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 
