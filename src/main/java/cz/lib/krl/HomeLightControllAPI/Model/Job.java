@@ -1,6 +1,5 @@
 package cz.lib.krl.HomeLightControllAPI.Model;
 
-import java.lang.annotation.ElementType;
 import java.util.Calendar;
 
 public class Job {

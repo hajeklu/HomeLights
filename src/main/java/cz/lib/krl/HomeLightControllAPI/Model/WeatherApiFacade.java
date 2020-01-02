@@ -7,11 +7,7 @@ import cz.lib.krl.HomeLightControllAPI.Util.HttpGetUtil;
 import cz.lib.krl.HomeLightControllAPI.Util.StringUtil;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class WeatherApiFacade {
 

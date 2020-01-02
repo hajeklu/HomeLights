@@ -1,14 +1,13 @@
 package cz.lib.krl.HomeLightControllAPI.Model;
 
-import cz.lib.krl.HomeLightControllAPI.Model.Logging.ILogger;
 import cz.lib.krl.HomeLightControllAPI.Model.ArduinoCommunication.IArduinoCommunicationProvider;
+import cz.lib.krl.HomeLightControllAPI.Model.Logging.ILogger;
 import cz.lib.krl.HomeLightControllAPI.Repositories.IJobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
-import java.util.Date;
 
 @Component
 public class Switcher {

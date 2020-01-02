@@ -1,5 +1,7 @@
 package cz.lib.krl.HomeLightControllAPI.Util;
 
+import cz.lib.krl.HomeLightControllAPI.Config.AppConfig;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,8 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
-import cz.lib.krl.HomeLightControllAPI.Config.AppConfig;
 
 public class HttpGetUtil
 {

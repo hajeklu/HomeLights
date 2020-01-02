@@ -4,10 +4,7 @@ import cz.lib.krl.HomeLightControllAPI.Model.Logging.ILogger;
 import cz.lib.krl.HomeLightControllAPI.Repositories.IJobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 
 @Service
